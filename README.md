@@ -7,7 +7,7 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app w
 
 ## **Some Screenshot of projects**
 
-## Lagin Page
+## Login Page
 ![alt text](https://github.com/prasanth132910/image/blob/main/page1.PNG)
 
 ## Registration Page
