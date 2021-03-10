@@ -3,11 +3,11 @@
       <h2>Live Parking</h2>
     </div>
     <span class="nav-tool-items" *ngIf="isEditing">
-      <a id="login"  mat-raised-button mat-button routerLink="login" routerLinkActive="active">Login</a>
+      <a id="login"  mat-raised-button mat-button routerLink="login" routerLinkActive="active">LogIn</a>
       <a mat-button routerLink="register" routerLinkActive="active">Register</a>
     </span>
     <span class="nav-tool-items" *ngIf="!isEditing">
-      <a mat-button routerLink="slot" routerLinkActive="active">Create Slot</a>
+      <a mat-button routerLink="slot" routerLinkActive="active">Add Slot</a>
       <a mat-button routerLink="home" routerLinkActive="active">Home</a>
       <a id="login" (click)="logout()"  mat-raised-button mat-button  routerLinkActive="active">LogOut</a>
 
