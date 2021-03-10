@@ -12,4 +12,8 @@ export class ParkingService {
      const obj = {email: email,totaldays:days,amount:amount,parkingslot:slot,intime:intime,outtime:outtime};
     return this.http.post(`${this.baseUrl}`,obj);
   }
+  getbooking(){
+    return this.http.get(`${this.baseUrl}`);
+
+  }
 }

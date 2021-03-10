@@ -1,6 +1,6 @@
-<ul >
+<ul *ngIf="isEditing1" >
       <li class="example-card" *ngFor="let i of size | enumerate">
-        <button   (click)="toggleModal('A-'+i)" id="A{{i+1}}" class="example" mat-raised-button>Slot A{{i+1}}</button>
+        <button    (click)="toggleModal('A'+(i+1))" id="A{{i+1}}" class="example" mat-raised-button>Slot A{{i+1}}</button>
     </li>
   </ul>
 <div class="address" id="input" *ngIf="isEditing">

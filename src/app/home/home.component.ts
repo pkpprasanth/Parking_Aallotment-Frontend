@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ParkingService} from '../service/parking.service'
 import {SlotService} from '../service/slot.service'
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -9,7 +10,7 @@ import {SlotService} from '../service/slot.service'
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private api:ParkingService,private api1:SlotService) { }
+  constructor(private api:ParkingService,private api1:SlotService,private router: Router) { }
   isEditing : boolean = false;
   isEditing1 : boolean = true;
   intime    : string="";
@@ -19,6 +20,7 @@ export class HomeComponent implements OnInit {
   hours:number=0;
   amount:number=0;
   data:any=[]
+  booking:any=[]
  slot:string="";
  size:number=0;
   ngOnInit(): void {
@@ -30,17 +32,32 @@ export class HomeComponent implements OnInit {
       }
     },
     error => console.log(error));
+
+    this.api.getbooking().subscribe( data =>{
+      console.log(data);
+      this.booking=data;
+      for(let i=0;i<this.booking.length;i++){
+        (<HTMLInputElement>document.getElementById(this.booking[i].parkingslot)).style.backgroundColor="red";
+        (<HTMLInputElement>document.getElementById(this.booking[i].parkingslot)).innerHTML="Booked"
+
+      }
+    },
+    error => console.log(error));
   }
   
   toggleModal(index:string){
+    this.isEditing1=false;
     console.log(index)
+    for(let i=0;i<this.booking.length;i++){
+      if(index==this.booking[i].parkingslot){
+        alert("Slot already Booked")   
+      } 
+    }
     this.isEditing = !this.isEditing;
     this.slot=index;
   }
   book(){
-    let div: HTMLDivElement = document.getElementById(this.slot) as HTMLDivElement;
-    console.log(div)
-    div.style.backgroundColor="red";
+    
     var d1:any=this.intime.slice(0,10);
     var d2:any=this.outtime.slice(0,10);
     let t1= new Date(d1)
@@ -52,9 +69,10 @@ export class HomeComponent implements OnInit {
     this.isEditing = false;
    var amount=numberOfHours*5;
     this.email=localStorage.getItem('email');
-    this.api.booking(this.email,this.days,amount ,this.slot,this.intime,this.outtime).subscribe( data =>{
-      console.log(data);
-      this.isEditing1 = false;
+    this.api.booking(this.email,days,amount ,this.slot,this.intime,this.outtime).subscribe( data =>{
+      alert("Your Booking Details :: "+JSON.stringify(data));
+      this.isEditing1=true;
+      this.router.navigate(['/login'])
     },
     error => console.log(error));
   }
