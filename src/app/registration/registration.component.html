@@ -1,0 +1,79 @@
+<mat-card>
+    <mat-card-content>
+      <div class="header">
+        <P>Register Your Account </P>
+      </div>
+      <form (ngSubmit)="onLogin()" name="loginForm" [formGroup]="loginForm">
+        <div class="emailInput">
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>Email</mat-label>
+            <input
+              formControlName="email"
+              matInput
+              placeholder="Enter email address" required
+            />
+            <mat-error *ngIf="!loginForm.controls['email'].valid">
+                Email is required
+              </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div>
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>Password</mat-label>
+            <input formControlName="password" matInput [type]=" hide ? 'password' : 'text'" required />
+            <button  mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide Password'"
+            [attr.aria-pressed]="hide">
+            <mat-icon>
+                {{hide ? 'visibility_off' : 'visibility'}}
+            </mat-icon>
+        </button>
+        <mat-error *ngIf="!loginForm.controls['password'].valid">
+            Password is required
+          </mat-error>
+        </mat-form-field>
+        </div>
+        <div class="firstname">
+            <mat-form-field class="full-width" appearance="outline">
+              <mat-label>First Name</mat-label>
+              <input
+                formControlName="firstname"
+                matInput
+                placeholder="Enter First Name" required
+              />
+              <mat-error *ngIf="!loginForm.controls['firstname'].valid">
+                First Name
+                </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="lastname">
+            <mat-form-field class="full-width" appearance="outline">
+              <mat-label>Last Name</mat-label>
+              <input
+                formControlName="lastname"
+                matInput
+                placeholder="Enter Last Name" required
+              />
+              <mat-error *ngIf="!loginForm.controls['lastname'].valid">
+                Last Name is required
+                </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="number">
+            <mat-form-field class="full-width" appearance="outline">
+              <mat-label>Contact Number</mat-label>
+              <input
+                formControlName="number"
+                matInput
+                placeholder="Enter Contact Number" required
+              />
+              <mat-error *ngIf="!loginForm.controls['number'].valid">
+                Contact Number is required
+                </mat-error>
+            </mat-form-field>
+          </div>
+        <button mat-flat-button color="primary">Register</button>
+      </form>
+
+    </mat-card-content>
+  </mat-card>

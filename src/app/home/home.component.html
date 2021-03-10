@@ -1,0 +1,22 @@
+<ul >
+      <li class="example-card" *ngFor="let i of size | enumerate">
+        <button   (click)="toggleModal('A-'+i)" id="A{{i+1}}" class="example" mat-raised-button>Slot A{{i+1}}</button>
+    </li>
+  </ul>
+<div class="address" id="input" *ngIf="isEditing">
+ 
+    <div>
+      <label for="intime">In Time </label>
+      <input type="datetime-local" id="time" name="time" [(ngModel)]="intime">
+      <br> <br>
+    </div>
+    <div>
+        <label for="outtime">Out Time </label>
+        <input type="datetime-local" id="time" name="time" [(ngModel)]="outtime">
+
+        <br> <br>
+      </div>
+
+    <button style="margin-left: 40%;" (click)="book()" mat-raised-button color="accent">Book</button>
+
+  </div>
